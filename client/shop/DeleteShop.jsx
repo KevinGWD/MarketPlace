@@ -12,6 +12,7 @@ import auth from '../auth/auth-helper.js'
 import {remove} from './api-shop.js'
 
 export default function DeleteShop(props) {
+  console.log(props)
   const [open, setOpen] = useState(false)
   
   const jwt = auth.isAuthenticated()
@@ -22,6 +23,7 @@ export default function DeleteShop(props) {
     remove({
       shopId: props.shop._id
     }, {t: jwt.token}).then((data) => {
+      console.log(data)
       if (data.error) {
         console.log(data.error)
       } else {

@@ -50,7 +50,7 @@ const classes = useStyles()
 return (
  <>
  <div>
-  <h1>Welcome to Faaams home page</h1>
+  <img src="../assets/images/unicornbikeImg.jpg" alt="image" />
  </div>
 {/* <Card className={classes.card}>
    

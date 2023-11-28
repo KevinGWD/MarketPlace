@@ -38,7 +38,7 @@ const requireSignin = expressjwt({
     secret: config.jwtSecret, 
     algorithms: ["HS256"],
 userProperty: 'auth'
-})
+}, console.log('requiresignin'))
 const hasAuthorization = (req, res, next) => { 
 const authorized = req.profile && req.auth
 && req.profile._id ==  req.auth._id 

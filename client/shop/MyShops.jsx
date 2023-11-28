@@ -65,7 +65,7 @@ export default function MyShops(){
     const updatedShops = [...shops]
     const index = updatedShops.indexOf(shop)
     updatedShops.splice(index, 1)
-    setShops(updatedShops)
+    setShops(updatedShops);
   }
 
     if (redirectToSignin) {

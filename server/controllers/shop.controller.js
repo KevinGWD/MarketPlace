@@ -3,6 +3,7 @@ import extend from 'lodash/extend.js'
 import errorHandler from './../helpers/dbErrorHandler.js'
 import formidable from 'formidable'
 import fs from 'fs'
+import mongoose from 'mongoose'
 
 const create = (req, res) => {
   console.log("no create");
@@ -91,9 +92,10 @@ const update = (req, res) => {
 }
 
 const remove = async (req, res) => {
+  console(req)
   try {
     let shop = req.shop
-    let deletedShop = shop.remove()
+    let deletedShop = shop.deleteOne()
     res.json(deletedShop)
   } catch (err) {
     return res.status(400).json({
@@ -125,6 +127,7 @@ const listByOwner = async (req, res) => {
 }
 
 const isOwner = (req, res, next) => {
+  console.log('isowner'+req)
   const isOwner = req.shop && req.auth && req.shop.owner._id == req.auth._id
   if(!isOwner){
     return res.status('403').json({

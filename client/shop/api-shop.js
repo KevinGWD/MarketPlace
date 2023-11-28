@@ -71,6 +71,7 @@ const create = async (params, credentials, shop) => {
   }
   
   const remove = async (params, credentials) => {
+    console.log(params)
     try {
       let response = await fetch('/api/shops/' + params.shopId, {
         method: 'DELETE',
@@ -80,7 +81,8 @@ const create = async (params, credentials, shop) => {
           'Authorization': 'Bearer ' + credentials.t
         }
       })
-      return response.json()
+      console.log(response)
+      return response
     } catch(err) {
       console.log(err)
     }
