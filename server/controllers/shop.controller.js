@@ -92,7 +92,7 @@ const update = (req, res) => {
 }
 
 const remove = async (req, res) => {
-  console(req)
+  console.log(req)
   try {
     let shop = req.shop
     let deletedShop = shop.deleteOne()
@@ -116,6 +116,8 @@ const list = async (req, res) => {
 }
 
 const listByOwner = async (req, res) => {
+  console.log(req)
+  console.log('isowner')
   try {
     let shops = await Shop.find({owner: req.profile._id}).populate('owner', '_id name')
     res.json(shops)
