@@ -44,6 +44,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function EditProfile({ match }) {
+  console.log(match)
   const classes = useStyles()
   const [values, setValues] = useState({
       name: '',
@@ -75,21 +76,22 @@ export default function EditProfile({ match }) {
 
   const clickSubmit = () => {
     const user = {
-      name: values.name || undefined,
-      email: values.email || undefined,
-      password: values.password || undefined,
-      seller: values.seller || undefined
+      name: values.name ,
+      email: values.email ,
+      password: values.password ,
+      seller: values.seller
     }
     update({
       userId: match.params.userId
     }, {
       t: jwt.token
     }, user).then((data) => {
+      console.log(data)
       if (data && data.error) {
         setValues({...values, error: data.error})
       } else {
         auth.updateUser(data, ()=>{
-          setValues({...values, userId: data._id, redirectToProfile: true})
+          setValues({...values, userId: data._id, redirectToProfile: true, seller:values.seller})
         })
       }
     })
@@ -97,8 +99,10 @@ export default function EditProfile({ match }) {
   const handleChange = name => event => {
     setValues({...values, [name]: event.target.value})
   }
-  const handleCheck = (event, checked) => {
-    setValues({...values, 'seller': checked})
+  const handleCheck = () => {
+    
+    setValues({...values, seller: !values.seller})
+    console.log(values.seller)
   }
 
   if (values.redirectToProfile) {

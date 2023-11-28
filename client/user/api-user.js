@@ -38,6 +38,7 @@ const create = async (user) => {
           'Authorization': 'Bearer ' + credentials.t
         }
       })
+  
       return await response.json()
     } catch(err) {
       console.log(err)
